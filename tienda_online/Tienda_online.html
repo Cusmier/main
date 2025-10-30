@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tienda Online Profesional</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1>Tienda Online</h1>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+    <nav>
+      <a href="#" data-section="inicio" class="active-link">Inicio</a>
+      <a href="#" data-section="productos">Productos</a>
+      <a href="#" data-section="nuevos">Productos Subidos</a>
+      <a href="#" data-section="sube-producto">Sube tu Producto</a>
+      <a href="#" data-section="carrito">Carrito (<span id="total-items">0</span>)</a>
+      <a href="#" data-section="trabaja">Trabaja con Nosotros</a>
+      <a href="#" data-section="contacto">Contáctanos</a>
+      <a href="#" data-section="empresa">La Empresa</a>
+      <a href="#" data-section="innovacion">Innovación</a>
+      <a href="#" data-section="sobre-nosotros">Sobre Nosotros</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h2>Bienvenido a la Tienda Online</h2>
+    <p>Encuentra los mejores productos de moda, tecnología, hogar, gaming y más.</p>
+    <button onclick="mostrarSeccion('productos')">Ver Productos</button>
+  </div>
+
+<!-- SLIDER DE PRODUCTOS DESTACADOS -->
+<div class="slider-wrapper">
+  <button class="slider-btn prev" onclick="moverSlider(-1)">&#10094;</button>
+  <div class="slider-productos" id="slider-productos"></div>
+  <button class="slider-btn next" onclick="moverSlider(1)">&#10095;</button>
+</div>
+
+  <main>
+    <section id="inicio" class="seccion active">
+      <h2>Catálogo Destacado</h2>
+      <div class="productos" id="lista-productos-inicio"></div>
+    </section>
+
+    <section id="productos" class="seccion">
+      <h2>Todos los Productos</h2>
+      <input type="text" id="buscador" placeholder="Buscar producto..." oninput="buscarProducto(this.value)">
+      <div class="productos" id="lista-productos"></div>
+    </section>
+
+    <section id="nuevos" class="seccion">
+      <h2>Productos Nuevos</h2>
+      <div class="productos" id="lista-productos-nuevos"></div>
+    </section>
+
+    <section id="sube-producto" class="seccion">
+      <h2>Sube tu Producto</h2>
+      <form id="form-subir-producto" onsubmit="return subirProducto(event)">
+        <input type="text" id="nombre-producto" placeholder="Nombre" required><br>
+        <input type="number" id="precio-producto" placeholder="Precio" min="1" required><br>
+        <select id="categoria-producto" required>
+          <option value="">Categoría</option>
+          <option value="Moda">Moda</option>
+          <option value="Tecnología">Tecnología</option>
+          <option value="Hogar">Hogar</option>
+          <option value="Gaming">Gaming</option>
+        </select><br>
+        <input type="url" id="imagen-producto" placeholder="URL Imagen" required><br>
+        <button type="submit" class="main-btn">Subir</button>
+      </form>
+    </section>
+
+    <section id="carrito" class="seccion">
+      <h2>Carrito</h2>
+      <div id="items-carrito"></div>
+      <p><strong>Total:</strong> $<span id="total-carrito">0</span></p>
+      <button class="main-btn" onclick="abrirModalPago()">Pagar</button>
+    </section>
+
+    <!-- Secciones informativas -->
+    <section id="sobre-nosotros" class="seccion"><h2>Sobre Nosotros</h2></section>
+    <section id="trabaja" class="seccion"><h2>Trabaja con Nosotros</h2></section>
+    <section id="contacto" class="seccion"><h2>Contáctanos</h2></section>
+    <section id="empresa" class="seccion"><h2>La Empresa</h2></section>
+    <section id="innovacion" class="seccion"><h2>Innovación</h2></section>
+  </main>
+
+  <div id="notificacion" class="notificacion"></div>
+
+  <div id="modal-pago" class="modal">
+    <div class="modal-content">
+      <h3>Seleccione el método de pago</h3>
+      <div class="payment-methods">
+        <div class="payment-card" onclick="activarMetodoPago(this,'tarjeta')"><span>💳 Tarjeta</span></div>
+        <div class="payment-card" onclick="activarMetodoPago(this,'paypal')"><span>💰 PayPal</span></div>
+        <div class="payment-card" onclick="activarMetodoPago(this,'crypto')"><span>₿ Cripto</span></div>
+      </div>
+      <button class="close" onclick="cerrarModalPago()">X</button>
+    </div>
+  </div>
+
+  <div id="modal-formulario" class="modal">
+    <div class="modal-content" id="form-content"></div>
+  </div>
+
+  <footer>© 2025 Tienda Online Profesional</footer>
+  <script src="js/script.js"></script>
+</body>
+</html>
